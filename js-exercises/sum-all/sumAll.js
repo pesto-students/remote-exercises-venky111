@@ -2,7 +2,7 @@ function calculateSum(num1, num2) {
   let sum = 0;
   let startNum = num1;
   while (startNum <= num2) {
-    sum += num1;
+    sum += startNum;
     startNum += 1;
   }
   return sum;
