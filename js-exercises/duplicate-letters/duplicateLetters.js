@@ -1,20 +1,17 @@
-function duplicateLetters(...args) {
-  if (args.length < 1) return false;
-
-  const inputString = args[0];
-
-  if (inputString.length < 1) return false;
-
+function duplicateLetters(inputString) {
+  if (typeof inputString !== 'string') return false;
+  const chars = inputString.split('');
   const freq = {};
 
-  for (let i = 0; i < inputString.length; i += 1) {
-    const character = inputString.charAt(i);
-    if (freq[character]) {
-      freq[character] += 1;
+  if (chars.length < 1) return false;
+
+  chars.forEach((char) => {
+    if (freq[char]) {
+      freq[char] += 1;
     } else {
-      freq[character] = 1;
+      freq[char] = 1;
     }
-  }
+  });
 
   // create items Array
   const itemsArray = Object.keys(freq).map((key) => [key, freq[key]]);
