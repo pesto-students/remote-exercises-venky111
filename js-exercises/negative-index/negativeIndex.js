@@ -17,9 +17,6 @@ function negativeIndex(array) {
       return target[property];
     },
     set(target, property, value, receiver) {
-      if (Array.isArray(value)) {
-        return new Proxy(value, handler);
-      }
       if (typeof property !== 'string') {
         return Reflect.set(target, property, value, receiver);
       }
@@ -27,11 +24,9 @@ function negativeIndex(array) {
 
       if (index < 0) {
         const actualIndex = index + target.length;
-        Reflect.set(target, actualIndex, value, receiver);
-        return true;
+        return Reflect.set(target, actualIndex, value, receiver);
       }
-      Reflect.set(target, property, value, receiver);
-      return true;
+      return Reflect.set(target, property, value, receiver);
     },
   };
   return new Proxy(array, handler);
